@@ -1,0 +1,504 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Open Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    overflow-x: hidden;
+    font-variation-settings:
+        "wdth" 100;
+    /* background: radial-gradient(circle at 20% 50%, rgba(3, 26, 55, 0.7) 0%, transparent 60%),
+        radial-gradient(circle at 80% 50%, rgba(5, 28, 61, 0.7) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(0, 4, 22, 0.9) 0%, rgba(0, 0, 10, 0.9) 100%); */
+    background-color: #191e2a;
+    color: white;
+    position: relative;
+    cursor: url('snowflake.png'), auto;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes leftCloudMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(20px);
+    }
+}
+
+@keyframes rightCloudMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-20px);
+    }
+}
+
+.left_cloud img {
+    width: 150px;
+    position: fixed;
+    top: 0px;
+    visibility: hidden;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.right_cloud img {
+    width: 150px;
+    position: fixed;
+    top: 0px;
+    right: 0;
+    visibility: hidden;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.left_cloud img.visible,
+.right_cloud img.visible {
+    visibility: visible;
+    opacity: 1;
+    /* animation: slideUp 0.5s ease-out; */
+}
+
+.left_cloud img.visible {
+    animation: slideUp 0.5s ease-out, leftCloudMove 2s ease-in-out 0.5s infinite alternate;
+}
+
+.right_cloud img.visible {
+    animation: slideUp 0.5s ease-out, rightCloudMove 2s ease-in-out 0.5s infinite alternate;
+}
+
+header {
+    min-block-size: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background:
+        /* linear-gradient(#8DD4F7, #9080FA 85%), */
+        url('background.png');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: soft-light;
+}
+
+header h1 {
+    font-size: 50px;
+    /* line-height: 0.70em; */
+    outline: none;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 5px #03bcf4,
+        0 0 10px #03bcf4,
+        0 0 20px #03bcf4,
+        0 0 30px #03bcf4,
+        0 0 40px #03bcf4,
+        0 0 55px #03bcf4,
+        0 0 70px #03bcf4;
+    font-family: "Snowburst One", serif;
+    font-weight: 800;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul a {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    padding: 10px 10px;
+    cursor: url('snowflake.png'), auto;
+}
+
+nav ul a::after {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    text-shadow: 0 0 8px white;
+    /* left: -10px;
+    top: 28px; */
+    left: 0;
+    bottom: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 300ms ease;
+    border-radius: 10px;
+    box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+}
+
+nav ul a:hover::after {
+    /* padding: 0 10px; */
+    /* width: 100%; */
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    pointer-events: none;
+    animation: fall linear infinite;
+    transform-origin: center;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateX(var(--x)) translateY(-100%);
+    }
+
+    100% {
+        transform: translateX(var(--x)) translateY(100vh);
+        /* Snowflakes fall relative to the body */
+    }
+}
+
+#introduction,
+#science,
+.hemisphere,
+.celebration {
+    width: 70vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    margin: 25vh 0;
+    padding: 20px;
+    /* background-color: #1a1b56; */
+    border: 1px solid rgba(211, 228, 253, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #1e1e27;
+    transition: 0.4s ease-in-out;
+    text-align: center;
+}
+
+#introduction:hover,
+#science:hover,
+.celebration:hover,
+.hemisphere:hover {
+    border: 1px solid rgba(211, 228, 253, 0.3);
+    box-shadow: 0 0 8px rgba(211, 228, 253, 0.3);
+    /* cursor: pointer; */
+}
+
+h2 {
+    /* font-size: clamp(1.5rem, 4.5vw, 2.5rem); */
+    font-size: 40px;
+    text-shadow: 0 0 20px rgba(211, 228, 253, 0.7);
+    display: flex;
+    gap: 10px;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+#introduction::after,
+#introduction::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(from var(--angle),
+            #A2D2FF,
+            /* Soft Icy Blue */
+            #1E40AF,
+            /* Deep Navy Blue for contrast */
+            #03BCF4,
+            /* Bright Sky Blue */
+            #F472B6,
+            /* Bold Pink for striking contrast */
+            #A2D2FF
+            /* Back to Soft Icy Blue */
+        );
+    /* background-color: #A2D2FF; */
+    top: 0%;
+    bottom: 0%;
+    translate: -0% -2%;
+    z-index: -10;
+    padding: 5px;
+    border-radius: 10px;
+    animation: 3s spin linear infinite;
+}
+
+#introduction::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 360deg;
+    }
+}
+
+#science {
+    text-align: justify;
+    background: linear-gradient(145deg, #1a1f2ccc, #1e1e27);
+}
+
+#hemispheres,
+#celebrations,
+#traditions,
+#conclusion {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-self: center;
+    align-self: center;
+}
+
+.hemisphere,
+.celebration {
+    margin: 0;
+    align-items: self-start;
+    text-align: left;
+    background: linear-gradient(145deg, #1a1f2ccc, #1e1e27);
+    padding: 30px;
+    margin: 5px 0;
+}
+
+.celebration:hover {
+    translate: 0% -2%;
+}
+
+h3 {
+    color: #D3E4FD;
+    /* font-size: clamp(1rem, 4.5vw, 2rem); */
+    font-size: 30px;
+    text-shadow: 0 0 15px rgba(211, 228, 253, 0.3);
+}
+
+p {
+    /* font-size: clamp(1em, 50vw, 1.1em); */
+    font-size: 17px;
+    line-height: 1.8em;
+}
+
+#celebrations {
+    margin: 25vh 0;
+}
+
+#traditions ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#traditions li {
+    display: flex;
+    justify-content: flex-start;
+    /* align-items: center; */
+    gap: 15px;
+    background-color: rgb(20 24 34);
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 16px;
+}
+
+#traditions li::before {
+    content: '❄';
+    font-size: 25px;
+    color: #03BCF4;
+}
+
+#traditions li strong {
+    color: #c6dbfb;
+    text-shadow: 0 0 15px rgba(211, 228, 253, 0.2);
+}
+
+#conclusion {
+    margin: 25vh 0;
+}
+
+#main-footer {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(0deg, #1a1f2cf2, #221f26e6);
+    border-top: 1px solid rgba(211, 228, 253, 0.2);
+}
+
+#footer-nav a {
+    color: rgba(151, 158, 170);
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+
+    /* Tablet-specific styles */
+    header {
+        min-block-size: 50vh;
+        /* Reduce the height to half */
+        background-size: contain;
+        /* Ensure the full image is visible */
+        background-position: top;
+        /* Adjust the position to make the image more visible */
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    #introduction,
+    #science {
+        width: 80vw;
+        text-align: left;
+        margin: 20vh 0;
+    }
+
+    .hemisphere,
+    .celebration {
+        width: 80vw;
+        text-align: left;
+    }
+
+    #hemispheres,
+    #celebrations,
+    #traditions,
+    #conclusion {
+        margin: 20vh 0;
+    }
+
+    .left_cloud img,
+    .right_cloud img {
+        width: 100px;
+    }
+
+    #introduction {
+        padding: 15px;
+    }
+
+    #introduction::after,
+    #introduction::before {
+        translate: -0% -1.5%;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        min-block-size: 80vh; /* Adjust header height for mobile */
+        background-size: contain; /* Ensure background image covers the entire space */
+        background-position: top; /* Adjust the background image position */
+    }
+
+    h1 {
+        font-size: 35px; /* Adjust header font size */
+    }
+
+    h2 {
+        font-size: 30px; /* Adjust subheading font size */
+    }
+
+    h3 {
+        font-size: 22px; /* Adjust smaller heading font size */
+    }
+
+    p {
+        font-size: 16px; /* Adjust paragraph font size */
+    }
+
+    #introduction,
+    #science {
+        width: 80%; /* Reduce width of sections */
+        text-align: left;
+        margin: 15vh 0;
+        padding: 10px;
+    }
+
+    .hemisphere,
+    .celebration {
+        width: 90%; /* Make elements full width */
+        text-align: left;
+    }
+
+    #hemispheres,
+    #celebrations,
+    #traditions,
+    #conclusion {
+        width: 80%; /* Full width for mobile */
+        margin: 20vh 0;
+    }
+
+    .left_cloud img,
+    .right_cloud img {
+        width: 80px; /* Reduce the size of the cloud images */
+    }
+
+    #introduction {
+        padding: 10px;
+    }
+
+    #introduction::after,
+    #introduction::before {
+        translate: -0% -2.8%;
+    }
+}
